@@ -24,8 +24,10 @@ Features:
 
 # Project Steps
 - [x] Research API
-- [ ] Build Core Functionality: 
+- [x] Build Core Functionality: 
     - [x] API Call 
-    - [ ] Randomizer
-    - [ ] Multi-Return. 
-- [ ] Interface for interacting with it. 
+    - [x] Randomizer
+    - [x] Multi-Return. 
+
+# References
+https://github.com/lukePeavey/quotable
