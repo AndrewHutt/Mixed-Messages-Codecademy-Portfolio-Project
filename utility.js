@@ -40,10 +40,34 @@ const getCategory = async () => {
 
 
 // get tags list and populate json document. 
-const populateCategories = () => { 
-    axios.get('https://api.quotable.io/tags').then(function (response) {   
-    const categories = response.data.map(element=> element.slug);
-    // console.log(categories);
+const populateCategories = async () => { 
+    const tags = await axios.get('https://api.quotable.io/tags')  
+    const categories = tags.data.map(element=> element.slug);
+    // console.log("Categories Liength: " + categories.length);
+
+    //checking all categories to make sure they return a response
+    const promiseList = [];
+    categories.forEach(category => { 
+        // console.log(`Checking ${category}`)
+        const endpoint = `https://api.quotable.io/quotes/random?tags=${category}`
+        promiseList.push(axios.get(endpoint));
+    })
+    const categoryCheck = await Promise.all(promiseList);
+    // console.log(categoryCheck);
+    let removelist = categoryCheck.filter(element => !element.data[0]);
+    removelist = removelist.map(element => { 
+        const url = element.config.url;
+        return url.split("=")[1];
+    })
+    
+    //removing non-matching categories
+    removelist.forEach(element => {  
+        const location = categories.indexOf(element);
+        console.log(location)
+        console.log(categories.splice(location, 1)); 
+    })
+
+    // console.log("Categories length: " + categories.length);
     
     //creating write object
     const output = { 
@@ -61,14 +85,7 @@ const populateCategories = () => {
         console.log('Successfully wrote to config.json');
     }
     });
-    
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
 }
-
 //Setup Calls
 // Uncomment to call update categories
 // populateCategories();
