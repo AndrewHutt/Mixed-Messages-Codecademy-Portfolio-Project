@@ -13,17 +13,19 @@ Steps:
     --> Find a quote API to generate data if possible.
     --> Output random quotes based on your mood. (One for Sad, One for Happy, One for Anxious)
 - Emotional Response Generator --> doesnt really follow project guidelines. 
+- Random Quote Generator
 
-Topic: Inspirational Quote Genrator
+Topic: Random Quote Genrator
 Features: 
-- Research a quote API. 
-- Get a random quote. 
-- Output quotes for different moods. 
+- Selects a random number of quotes between 0-3 with a custom message about them. 
+- Selects random category. 
+- Calls quote api to get random quotes. 
+- Outputs the quotes and messages to console.
 
-# Project Background Research
-- Research API
-- Build Core Functionality: 
-    - API Call 
-    - Randomizer (Calls for 10 and then gets a random one).
-    - Multi-Return. 
-- Interface for interacting with it. 
+# Project Steps
+- [x] Research API
+- [ ] Build Core Functionality: 
+    - [x] API Call 
+    - [ ] Randomizer
+    - [ ] Multi-Return. 
+- [ ] Interface for interacting with it. 
